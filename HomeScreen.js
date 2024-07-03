@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -9,7 +9,7 @@ const products = [
     name: 'Office Wear',
     description: 'Reversible angora cardigan',
     price: '$10.00',
-    image: require('./assets/dress1.png'),
+    image: require('./assets/dress1.png'), 
   },
   {
     id: '2',
@@ -89,15 +89,13 @@ const HomeScreen = ({ navigation }) => {
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <View style={styles.productContainer}>
-              <View style={styles.imageContainer}>
-                <Image source={item.image} style={styles.productImage} />
-                <TouchableOpacity style={styles.addButton} onPress={() => addToCart(item)}>
-                  <Ionicons name="add-circle" size={32} color="white" />
-                </TouchableOpacity>
-              </View>
+              <Image source={item.image} style={styles.productImage} />
               <Text style={styles.productName}>{item.name}</Text>
               <Text style={styles.productDescription}>{item.description}</Text>
               <Text style={styles.productPrice}>{item.price}</Text>
+              <TouchableOpacity style={styles.addButton} onPress={() => addToCart(item)}>
+                <Ionicons name="add-circle" size={32} color="black" />
+              </TouchableOpacity>
             </View>
           )}
           numColumns={2}
@@ -137,23 +135,13 @@ const styles = StyleSheet.create({
   },
   productContainer: {
     flex: 1,
-    marginHorizontal: 5,
+    padding: 10,
     marginBottom: 20,
-  },
-  imageContainer: {
-    position: 'relative',
-    width: '100%',
-    alignItems: 'center',
   },
   productImage: {
     width: '100%',
     height: 200,
     resizeMode: 'contain',
-  },
-  addButton: {
-    position: 'absolute',
-    bottom: 10,
-    right: 10,
   },
   productName: {
     fontSize: 18,
@@ -170,6 +158,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 5,
     color: '#dd8560',
+  },
+  addButton: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
   },
   productList: {
     paddingBottom: 20,
